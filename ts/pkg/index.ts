@@ -3,11 +3,13 @@ import * as express from 'express';
 import * as core from 'express-serve-static-core';
 import {AutoScalerImplementationFactory, AutoScalerImplementationOnChangeHandler, GetAutoScalerImplementationProc, getRequestHandlerForImplementation} from 'grid-autoscaler-impl-pkg';
 import {Implementation, IImplementationSetup, Options} from "aws-ec2-autoscaler-impl";
+import * as AWS from "aws-sdk";
 import {EC2} from 'aws-sdk';
 import {SettingsStore} from "./settingsStore";
 
 interface Config {
     Info: AutoScalerImplementationInfo;
+    AWSRegion: string;
     SettingsFile: string; 
 }
 
@@ -27,6 +29,7 @@ interface Config {
 
 // factory function
 let factory: AutoScalerImplementationFactory = (getImpl: GetAutoScalerImplementationProc, config: Config, onChange: AutoScalerImplementationOnChangeHandler) => {
+    AWS.config.update({region: config.AWSRegion});
     let store = new SettingsStore(config.SettingsFile);
     return store.load()
     .then((options: Options) => {

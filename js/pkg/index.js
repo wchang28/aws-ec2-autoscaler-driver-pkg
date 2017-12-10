@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var grid_autoscaler_impl_pkg_1 = require("grid-autoscaler-impl-pkg");
 var aws_ec2_autoscaler_impl_1 = require("aws-ec2-autoscaler-impl");
+var AWS = require("aws-sdk");
 var settingsStore_1 = require("./settingsStore");
 /* implementation API extension
     /info
@@ -19,6 +20,7 @@ var settingsStore_1 = require("./settingsStore");
 */
 // factory function
 var factory = function (getImpl, config, onChange) {
+    AWS.config.update({ region: config.AWSRegion });
     var store = new settingsStore_1.SettingsStore(config.SettingsFile);
     return store.load()
         .then(function (options) {
