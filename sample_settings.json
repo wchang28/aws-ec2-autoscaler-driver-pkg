@@ -1,0 +1,13 @@
+{
+    "CPUsPerInstance": 6
+    ,"WorkerCharacteristic":
+    {
+        "KeyName": "{some-key-name}"
+        ,"InstanceType": "m4.2xlarge"
+        ,"ImageId": "{some-image-id}"
+        ,"SecurityGroupId": "{some-security-group-id}"
+        ,"SubnetId": "{some-subnet-id}"
+        ,"IAMRoleName": "{some-IAM-role-name}"
+        ,"NameTag": "{some-name-tag}"
+    }
+}

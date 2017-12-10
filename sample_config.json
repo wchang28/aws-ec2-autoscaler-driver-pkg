@@ -1,0 +1,8 @@
+{
+    "Info":
+    {
+        "Name": "AWS EC2 Auto-Scaler Driver",
+        "HasSetupUI": true
+    },
+    "SettingsFile": "{path-to-the-setting-json-file}"
+}
